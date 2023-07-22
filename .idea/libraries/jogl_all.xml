@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="jogl-all">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/install/processing-4.2/core/library/jogl-all.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/install/processing-4.2/core/library/gluegen-rt.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/install/processing-4.2/core/library/core.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/Downloads/install/processing-4.2/core/library/windows-amd64" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>
