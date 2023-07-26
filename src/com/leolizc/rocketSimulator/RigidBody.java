@@ -1,16 +1,17 @@
+package com.leolizc.rocketSimulator;
+
 import processing.core.PVector;
 
-public abstract class RigidBody {
+public abstract class RigidBody extends WorldEntity{
 
     protected float mass;
-    public PVector position;
     private PVector velocity;
     private PVector acceleration;
     private PVector cumulativeForce;
 
     public RigidBody(float mass, PVector position, PVector velocity, PVector acceleration){
+        super(position);
         this.mass = mass;
-        this.position = position;
         this.velocity = velocity;
         this.acceleration = acceleration;
         this.cumulativeForce = new PVector(0,0,0);
