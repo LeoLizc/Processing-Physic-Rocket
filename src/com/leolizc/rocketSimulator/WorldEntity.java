@@ -22,7 +22,7 @@ public abstract class WorldEntity {
         this.scale = new PVector(1, 1, 1);
     }
 
-    public void render(){
+    public void render() {
         p.pushMatrix();
         p.translate(position.x, position.y, position.z);
         p.scale(scale.x, scale.y, scale.z);

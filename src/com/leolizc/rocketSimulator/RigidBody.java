@@ -4,8 +4,8 @@ import processing.core.PVector;
 
 public abstract class RigidBody extends WorldEntity {
 
-    protected float mass;
     private final PVector velocity;
+    protected float mass;
     private PVector acceleration;
     private PVector cumulativeForce;
 
