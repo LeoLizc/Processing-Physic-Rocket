@@ -19,9 +19,7 @@ public class Cylinder extends WorldEntity {
     public void update() {
     }
 
-    public void render() {
-
-        p.translate(position);
+    public void drawObject() {
 
         PVector axis = new PVector(1, 0, 0);
 
