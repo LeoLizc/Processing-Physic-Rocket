@@ -21,8 +21,6 @@ public class Cylinder extends WorldEntity {
 
     public void drawObject() {
 
-        PVector axis = new PVector(1, 0, 0);
-
         p.stroke(100, 100, 100);
         p.fill(200f);
 
