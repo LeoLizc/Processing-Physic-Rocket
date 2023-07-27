@@ -3,9 +3,13 @@ package com.leolizc.rocketSimulator;
 import processing.core.PApplet;
 import processing.core.PVector;
 
+import java.util.ArrayList;
+
 public class Simulator extends PApplet {
+    ArrayList<WorldEntity> entities = new ArrayList<>();
+
     public static void main(String[] args) {
-        PApplet.main("com.leolizc.rocketSimulator.Main");
+        PApplet.main("com.leolizc.rocketSimulator.Simulator");
     }
 
     public void settings() {
@@ -14,12 +18,29 @@ public class Simulator extends PApplet {
 
     @Override
     public void setup() {
-        super.setup();
+        camera(0, 0, 1, 0, 0, -1, 0, 1, 0);
+        perspective(PI / 3.0f, (float) width / height, 0.1f, 10000.0f);
+
+        entities.add(new Cylinder(this));
+    }
+
+    private void render() {
+        for (WorldEntity entity : entities) {
+            entity.render();
+        }
+    }
+
+    private void update() {
+        for (WorldEntity entity : entities) {
+            entity.update();
+        }
     }
 
     @Override
     public void draw() {
-        super.draw();
+        background(255f);
+        update();
+        render();
     }
 
     public void translate(PVector vector) {
