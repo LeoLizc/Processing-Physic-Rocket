@@ -21,6 +21,11 @@ public abstract class RigidBody extends WorldEntity {
         this.cumulativeForce.add(force);
     }
 
+    public void update() {
+        updatePhysics();
+        updateObject();
+    }
+
     public void updatePhysics() {
         this.acceleration = PVector.div(this.cumulativeForce, this.mass);
         this.velocity.add(this.acceleration);
@@ -28,5 +33,6 @@ public abstract class RigidBody extends WorldEntity {
         this.cumulativeForce = new PVector(0, 0, 0);
     }
 
+    public abstract void updateObject();
 
 }
