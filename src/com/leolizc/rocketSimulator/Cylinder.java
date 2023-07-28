@@ -3,23 +3,25 @@ package com.leolizc.rocketSimulator;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Cylinder extends WorldEntity {
+public class Cylinder extends RigidBody {
 
     int numOfFaces = 50;
     float h = 100, r = 60;
 
     public Cylinder(Simulator p, PVector position) {
-        super(p, position);
+        super(p, 10, position);
     }
 
     public Cylinder(Simulator p) {
-        super(p, new PVector(0, 0, -200));
+        super(p, 10, new PVector(0, 0, -200));
     }
 
     public void update() {
     }
 
     public void drawObject() {
+
+        System.out.println("position: " + position);
 
         p.stroke(100, 100, 100);
         p.fill(200f);
