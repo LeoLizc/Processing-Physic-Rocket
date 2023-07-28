@@ -24,7 +24,7 @@ public abstract class WorldEntity {
 
     public void render() {
         p.pushMatrix();
-        p.translate(position.x, position.y, position.z);
+        p.translate(position);
         p.scale(scale.x, scale.y, scale.z);
         drawObject();
         p.popMatrix();
