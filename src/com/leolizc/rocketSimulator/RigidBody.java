@@ -17,22 +17,32 @@ public abstract class RigidBody extends WorldEntity {
         this.cumulativeForce = new PVector(0, 0, 0);
     }
 
+    public RigidBody(Simulator p, float mass, PVector position) {
+        super(p, position);
+        this.mass = mass;
+        this.velocity = new PVector(0, 0, 0);
+        // By default, the acceleration is the gravity
+        this.acceleration = new PVector(0, 9.8f/100, 0);
+        this.cumulativeForce = new PVector(0, 0, 0);
+    }
+
     public void applyForce(PVector force) {
         this.cumulativeForce.add(force);
     }
 
-    public void update() {
+    @Override
+    public void _update() {
         updatePhysics();
-        updateObject();
+        update();
     }
 
     public void updatePhysics() {
-        this.acceleration = PVector.div(this.cumulativeForce, this.mass);
-        this.velocity.add(this.acceleration);
+        PVector acceleration = PVector.div(this.cumulativeForce, this.mass).add(this.acceleration);
+        this.velocity.add(acceleration);
         this.position.add(this.velocity);
         this.cumulativeForce = new PVector(0, 0, 0);
     }
 
-    public abstract void updateObject();
+    protected abstract void update();
 
 }

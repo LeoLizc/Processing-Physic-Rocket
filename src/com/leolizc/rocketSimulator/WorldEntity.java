@@ -24,7 +24,7 @@ public abstract class WorldEntity {
 
     public void render() {
         p.pushMatrix();
-        p.translate(position.x, position.y, position.z);
+        p.translate(position);
         p.scale(scale.x, scale.y, scale.z);
         drawObject();
         p.popMatrix();
@@ -32,7 +32,11 @@ public abstract class WorldEntity {
 
     public abstract void drawObject();
 
-    public abstract void update();
+    protected abstract void update();
+
+    public void _update() {
+        update();
+    }
 
     public void setScale(float x, float y, float z) {
         this.scale = new PVector(x, y, z);

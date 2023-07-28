@@ -32,7 +32,7 @@ public class Simulator extends PApplet {
 
     private void update() {
         for (WorldEntity entity : entities) {
-            entity.update();
+            entity._update();
         }
     }
 
