@@ -21,9 +21,10 @@ public abstract class RigidBody extends WorldEntity {
         this.cumulativeForce.add(force);
     }
 
-    public void update() {
+    @Override
+    public void _update() {
         updatePhysics();
-        updateObject();
+        update();
     }
 
     public void updatePhysics() {
@@ -33,6 +34,6 @@ public abstract class RigidBody extends WorldEntity {
         this.cumulativeForce = new PVector(0, 0, 0);
     }
 
-    public abstract void updateObject();
+    protected abstract void update();
 
 }

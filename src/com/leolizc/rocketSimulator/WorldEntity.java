@@ -32,7 +32,11 @@ public abstract class WorldEntity {
 
     public abstract void drawObject();
 
-    public abstract void update();
+    protected abstract void update();
+
+    public void _update() {
+        update();
+    }
 
     public void setScale(float x, float y, float z) {
         this.scale = new PVector(x, y, z);
