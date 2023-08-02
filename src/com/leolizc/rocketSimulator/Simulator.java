@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Simulator extends PApplet {
     ArrayList<WorldEntity> entities = new ArrayList<>();
+    Camera camera;
 
     public static void main(String[] args) {
         PApplet.main("com.leolizc.rocketSimulator.Simulator");
@@ -18,8 +19,10 @@ public class Simulator extends PApplet {
 
     @Override
     public void setup() {
-        camera(0, 0, 1, 0, 0, -1, 0, 1, 0);
-        perspective(PI / 3.0f, (float) width / height, 0.1f, 10000.0f);
+//        camera(0, 0, 1, 0, 0, -1, 0, 1, 0);
+//        perspective(PI / 3.0f, (float) width / height, 0.1f, 10000.0f);
+
+        camera = new Camera(this, null);
 
         entities.add(new Cylinder(this));
         PerlinSea sea = new PerlinSea(this);
@@ -35,6 +38,7 @@ public class Simulator extends PApplet {
     }
 
     private void update() {
+        camera.updateCamera();
         for (WorldEntity entity : entities) {
             entity._update();
         }
@@ -42,9 +46,26 @@ public class Simulator extends PApplet {
 
     @Override
     public void draw() {
-        background(255f);
+//        background(255f);
         update();
+        camera.processCamera();
         render();
+    }
+
+    public void mouseDragged() {
+        camera.rotate();
+    }
+
+    public void mousePressed() {
+        camera.startRotation();
+    }
+
+    public void keyPressed() {
+        camera.startMove(key);
+    }
+
+    public void keyReleased() {
+        camera.stopMove(key);
     }
 
     public void translate(PVector vector) {
