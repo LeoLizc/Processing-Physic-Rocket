@@ -21,8 +21,6 @@ public class Cylinder extends RigidBody {
 
     public void drawObject() {
 
-        System.out.println("position: " + position);
-
         p.stroke(100, 100, 100);
         p.fill(200f);
 
