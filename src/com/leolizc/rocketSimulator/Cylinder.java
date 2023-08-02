@@ -16,6 +16,16 @@ public class Cylinder extends RigidBody {
         super(p, 10, new PVector(0, 0, -200));
     }
 
+    public Cylinder(Simulator p, float mass, PVector position) {
+        super(p, mass, position);
+    }
+
+    public Cylinder(Simulator p, float mass, PVector position, float h, float r) {
+        super(p, mass, position);
+        this.h = h;
+        this.r = r;
+    }
+
     public void update() {
     }
 
