@@ -30,7 +30,7 @@ public abstract class WorldEntity {
         p.popMatrix();
     }
 
-    public abstract void drawObject();
+    protected abstract void drawObject();
 
     protected abstract void update();
 
