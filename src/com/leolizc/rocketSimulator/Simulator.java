@@ -71,4 +71,18 @@ public class Simulator extends PApplet {
     public void translate(PVector vector) {
         super.translate(vector.x, vector.y, vector.z);
     }
+
+    public void scale(PVector vector) {
+        super.scale(vector.x, vector.y, vector.z);
+    }
+
+    public void rotate(PVector vector) {
+        super.rotateX(vector.x);
+        super.rotateY(vector.y);
+        super.rotateZ(vector.z);
+    }
+
+    public void rotate(float angle, PVector vector) {
+        super.rotate(angle, vector.x, vector.y, vector.z);
+    }
 }
