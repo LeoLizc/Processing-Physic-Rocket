@@ -23,12 +23,17 @@ public class Simulator extends PApplet {
 //        perspective(PI / 3.0f, (float) width / height, 0.1f, 10000.0f);
 
         camera = new Camera(this, null);
+        camera.position.set(0, 0, -200);
 
         entities.add(new Cylinder(this));
         PerlinSea sea = new PerlinSea(this);
         sea.position.set(0, 100, -300);
         sea.setSegments(40);
         entities.add(sea);
+        entities.add(new Platform(
+                this,
+                new PVector(0, 50, -200))
+        );
     }
 
     private void render() {
