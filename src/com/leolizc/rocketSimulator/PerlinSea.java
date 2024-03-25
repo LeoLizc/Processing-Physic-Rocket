@@ -76,6 +76,7 @@ public class PerlinSea extends WorldEntity {
 
         p.rotateX(p.PI / 2f);// 90 degrees
         p.noFill();
+        p.stroke(30, 30, 250);
 
         // 20x20 squares From x = -200 to 200, draw a line from y = -200 to 200
         float halfSize = size / 2f;
