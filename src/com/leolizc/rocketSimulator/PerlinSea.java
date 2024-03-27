@@ -3,7 +3,8 @@ package com.leolizc.rocketSimulator;
 import processing.core.PVector;
 
 public class PerlinSea extends WorldEntity {
-    float scale, diff = 100;
+    float scaleP, diff = 100;
+    private float baseScaleP;
     float intensity, velocity, rotation;
     private float size, segments, step;
 
@@ -33,11 +34,11 @@ public class PerlinSea extends WorldEntity {
             Simulator p,
             float size,
             float segments,
-            float scale,
+            float scaleP,
             float intensity
     ) {
         super(p);
-        init(size, segments, scale, intensity);
+        init(size, segments, scaleP, intensity);
     }
 
     private void init() {
@@ -54,7 +55,7 @@ public class PerlinSea extends WorldEntity {
             float size,
             float segments
     ) {
-        init(size, segments, 0.02f, 30);
+        init(size, segments, 1f, 30);
     }
 
     private void init(
@@ -65,11 +66,12 @@ public class PerlinSea extends WorldEntity {
     ) {
         this.size = size;
         this.segments = segments;
-        this.scale = scale;
+        this.scaleP = scale;
         this.intensity = intensity;
-        velocity = Simulator.HALF_PI / 1440f;
+        velocity = Simulator.HALF_PI / 9440f;
         step = size / segments;
         rotation = 0;
+        this.baseScaleP = 20/size;
     }
 
     public void drawObject() {
@@ -108,12 +110,12 @@ public class PerlinSea extends WorldEntity {
 
     private float noise(float x, float y) {
         PVector perlinPoint = getPerlinPoint(x, y);
-        return p.noise(perlinPoint.x * scale, perlinPoint.y * scale);
+        return p.noise(perlinPoint.x, perlinPoint.y);
     }
 
     private PVector getPerlinPoint(float x, float y) {
-        float xOff = diff + size / 2f;
-        return (new PVector(x + xOff, y + xOff)).rotate(rotation);
+        float halfS = size / 2f;
+        return (new PVector(x + halfS, y + halfS)).mult(this.baseScaleP*scaleP).add(diff, diff).rotate(rotation);
     }
 
     private void vertex(float x, float y) {
