@@ -58,8 +58,28 @@ public abstract class WorldEntity {
         this.scale.add(vector);
     }
 
-    public void rotate(float angle, PVector vector) {
+    public void rotateByAxis(float angle, PVector vector) {
         vector = vector.normalize();
         this.rotation.rotateByAngleNormalAxis(angle, vector.x, vector.y, vector.z);
+//        Quaternion q = new Quaternion(
+//            vector.x * (float) Math.sin(angle / 2),
+//            vector.y * (float) Math.sin(angle / 2),
+//            vector.z * (float) Math.sin(angle / 2),
+//            (float) Math.cos(angle / 2)
+//        );
+//
+//        this.rotation = q.mult(this.rotation);
+    }
+
+    public void rotateByGlobalAxis(float angle, PVector vector) {
+        vector = vector.normalize();
+        Quaternion q = new Quaternion(
+            vector.x * (float) Math.sin(angle / 2),
+            vector.y * (float) Math.sin(angle / 2),
+            vector.z * (float) Math.sin(angle / 2),
+            (float) Math.cos(angle / 2)
+        );
+
+        this.rotation = q.mult(this.rotation);
     }
 }
