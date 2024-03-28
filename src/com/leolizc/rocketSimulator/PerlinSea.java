@@ -68,7 +68,7 @@ public class PerlinSea extends WorldEntity {
         this.segments = segments;
         this.scaleP = scale;
         this.intensity = intensity;
-        velocity = Simulator.HALF_PI / 9440f;
+        velocity = Simulator.HALF_PI / 500f;
         step = size / segments;
         rotation = 0;
         this.baseScaleP = 20/size;
@@ -98,7 +98,7 @@ public class PerlinSea extends WorldEntity {
     }
 
     public void update() {
-        rotation = (rotation + velocity) % Simulator.TWO_PI;
+        rotation = (rotation + velocity*p.deltaTime) % Simulator.TWO_PI;
     }
 
     private void horizontalLine(float y) {
