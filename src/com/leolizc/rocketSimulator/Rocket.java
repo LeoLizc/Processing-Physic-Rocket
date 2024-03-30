@@ -21,7 +21,7 @@ public class Rocket extends RigidBody{
         p.stroke(100, 100, 100);
         p.fill(200f);
 
-        this.applyForce(new PVector(0, -9.8f/12, 0));
+//        this.applyForce(new PVector(0, -9.8f/12, 0));
 
         // Top circle
         p.beginShape();
