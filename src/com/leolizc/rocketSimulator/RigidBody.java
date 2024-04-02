@@ -1,5 +1,6 @@
 package com.leolizc.rocketSimulator;
 
+import com.jogamp.opengl.math.Quaternion;
 import processing.core.PMatrix3D;
 import processing.core.PVector;
 
@@ -47,7 +48,21 @@ public abstract class RigidBody extends WorldEntity {
         this.cumulativeForce.add(force);
     }
 
-    public void applyForce(PVector force, PVector position) {
+    public void applyRelativeForce(PVector force, PVector position) {
+
+//        Convert position into quaternion
+        Quaternion p = new Quaternion(
+                position.x,
+                position.y,
+                position.z,
+                0
+        );
+
+//        Rotate q by the current rotation
+        Quaternion q = new Quaternion(this.rotation);
+        p = q.mult(p).mult(q.conjugate());
+        position = new PVector(p.getX(), p.getY(), p.getZ());
+
         this.cumulativeForce.add(force);
         this.cumulativeTorque.add(position.copy().cross(force));
     }
