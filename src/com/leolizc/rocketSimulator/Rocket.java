@@ -1,15 +1,29 @@
 package com.leolizc.rocketSimulator;
 
 import processing.core.PApplet;
+import processing.core.PMatrix3D;
 import processing.core.PVector;
 
 public class Rocket extends RigidBody{
     public Rocket(Simulator p, float mass, PVector position, PVector velocity, PVector acceleration) {
-        super(p, mass, position, velocity, acceleration);
+        super(p, mass, new PMatrix3D(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+
+        ), position, velocity, acceleration);
     }
 
     public Rocket(Simulator p){
-        super(p, 10, new PVector(0, -200, -200));
+        super(p, 10,
+                new PMatrix3D(
+                        1, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, 1, 0,
+                        0, 0, 0, 1
+                ),
+                new PVector(0, -200, -200));
     }
 
     @Override
@@ -54,6 +68,15 @@ public class Rocket extends RigidBody{
 
     @Override
     protected void update() {
+        keyInteract();
+    }
 
+    private void keyInteract(){
+        if(p.keyPressed){
+            if(p.key == 'x'){
+                System.out.println("x pressed");
+                this.applyForce(new PVector(0, -200, 0));
+            }
+        }
     }
 }

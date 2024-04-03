@@ -1,6 +1,7 @@
 package com.leolizc.rocketSimulator;
 
 import processing.core.PApplet;
+import processing.core.PMatrix3D;
 import processing.core.PVector;
 
 public class Cylinder extends RigidBody {
@@ -9,19 +10,41 @@ public class Cylinder extends RigidBody {
     float h = 100, r = 60;
 
     public Cylinder(Simulator p, PVector position) {
-        super(p, 10, position);
+        super(p, 10, new PMatrix3D(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+        ), position);
     }
 
     public Cylinder(Simulator p) {
-        super(p, 10, new PVector(0, 0, -200));
+        super(p, 10, new PMatrix3D(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+
+        ), new PVector(0, 0, -200));
     }
 
     public Cylinder(Simulator p, float mass, PVector position) {
-        super(p, mass, position);
+        super(p, mass, new PMatrix3D(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+
+        ), position);
     }
 
     public Cylinder(Simulator p, float mass, PVector position, float h, float r) {
-        super(p, mass, position);
+        super(p, mass, new PMatrix3D(
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+        ), position);
         this.h = h;
         this.r = r;
     }
