@@ -52,18 +52,18 @@ public abstract class RigidBody extends WorldEntity {
 
 //        Convert position into quaternion
         Quaternion p = new Quaternion(
-                position.x,
-                position.y,
-                position.z,
+                force.x,
+                force.y,
+                force.z,
                 0
         );
 
 //        Rotate q by the current rotation
-        Quaternion q = new Quaternion(this.rotation);
-        p = q.mult(p).mult(q.conjugate());
-        position = new PVector(p.getX(), p.getY(), p.getZ());
+        Quaternion q = new Quaternion(this.rotation), qn = new Quaternion(this.rotation);
+        qn.conjugate();
+        p = q.mult(p).mult(qn);
 
-        this.cumulativeForce.add(force);
+        this.cumulativeForce.add(new PVector(p.getX(), p.getY(), p.getZ()));
         this.cumulativeTorque.add(position.copy().cross(force));
     }
 
@@ -78,8 +78,8 @@ public abstract class RigidBody extends WorldEntity {
         this.velocity.add(acceleration);
         this.position.add(PVector.mult(this.velocity, p.deltaTime*0.4f));
         this.cumulativeForce = new PVector(0, 0, 0);
-        System.out.println("LINEAR MOVEMENT:");
-        System.out.println("Position: "+this.position+"\nVelocity: "+this.velocity+"\nAcceleration: "+acceleration);
+//        System.out.println("LINEAR MOVEMENT:");
+//        System.out.println("Position: "+this.position+"\nVelocity: "+this.velocity+"\nAcceleration: "+acceleration);
 
 //        Angular Acceleration = I^-1 * T
         PVector angAcc = new PVector(0,0,0);
@@ -89,10 +89,11 @@ public abstract class RigidBody extends WorldEntity {
                 this.angularVelocity.mag()*p.deltaTime,
                 this.angularVelocity
         );
+        System.out.println("ANGULAR MOVEMENT:");
+        System.out.println("Torque: "+this.cumulativeTorque);
+        System.out.println("Angular Velocity: "+this.angularVelocity+"\nAngular Acceleration: "+angAcc+"\nRotation: "+this.rotation);
         this.cumulativeTorque.set(0, 0, 0);
 
-        System.out.println("ANGULAR MOVEMENT:");
-        System.out.println("Angular Velocity: "+this.angularVelocity+"\nAngular Acceleration: "+angAcc+"\nRotation: "+this.rotation);
     }
 
     protected abstract void update();
