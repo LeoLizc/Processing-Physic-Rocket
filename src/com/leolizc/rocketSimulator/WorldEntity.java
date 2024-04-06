@@ -59,7 +59,7 @@ public abstract class WorldEntity {
     }
 
     public void rotateByAxis(float angle, PVector vector) {
-        vector = vector.normalize();
+        vector = vector.copy().normalize();
         this.rotation.rotateByAngleNormalAxis(angle, vector.x, vector.y, vector.z);
 //        Quaternion q = new Quaternion(
 //            vector.x * (float) Math.sin(angle / 2),
@@ -72,7 +72,7 @@ public abstract class WorldEntity {
     }
 
     public void rotateByGlobalAxis(float angle, PVector vector) {
-        vector = vector.normalize();
+        vector = vector.copy().normalize();
         Quaternion q = new Quaternion(
             vector.x * (float) Math.sin(angle / 2),
             vector.y * (float) Math.sin(angle / 2),
