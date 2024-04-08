@@ -70,18 +70,18 @@ public class Rocket extends RigidBody{
 
     private void keyInteract(){
         if(p.keyPressed){
-            if(p.key == 'x'){
+            if(p.pressedKey('x')){
                 System.out.println("x pressed");
                 this.applyForce(new PVector(0, -200, 0));
             }
-            if(p.key == 'z'){
+            if(p.pressedKey('z')){
                 System.out.println("z pressed");
                 PVector fD = (new PVector(0, -1)).rotate(p.PI/6f);//Force direction
                 System.out.println(fD);
                 this.applyRelativeForce((new PVector(fD.x, fD.y, 0)).mult(50), new PVector(-4, -40, 0));
 //                this.applyForce((new PVector(fD.x, fD.y, 0)).mult(-100));
             }
-            if(p.key == 'c') {
+            if(p.pressedKey('c')) {
                 System.out.println("c pressed");
                 PVector fD = (new PVector(0, -1)).rotate(-p.PI / 6f);//Force direction
                 System.out.println(fD);
