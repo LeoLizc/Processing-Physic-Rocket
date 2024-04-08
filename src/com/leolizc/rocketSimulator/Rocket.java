@@ -76,16 +76,16 @@ public class Rocket extends RigidBody{
             }
             if(p.pressedKey('z')){
                 System.out.println("z pressed");
-                PVector fD = (new PVector(0, -1)).rotate(p.PI/6f);//Force direction
+                PVector fD = (new PVector(0, -1)).rotate(p.PI/10f);//Force direction
                 System.out.println(fD);
-                this.applyRelativeForce((new PVector(fD.x, fD.y, 0)).mult(50), new PVector(-4, -40, 0));
+                this.applyRelativeForce((new PVector(fD.x, fD.y, 0)).mult(50), new PVector(-4, -35, 0));
 //                this.applyForce((new PVector(fD.x, fD.y, 0)).mult(-100));
             }
             if(p.pressedKey('c')) {
                 System.out.println("c pressed");
-                PVector fD = (new PVector(0, -1)).rotate(-p.PI / 6f);//Force direction
+                PVector fD = (new PVector(0, -1)).rotate(-p.PI / 10f);//Force direction
                 System.out.println(fD);
-                this.applyRelativeForce((new PVector(fD.x, fD.y, 0)).mult(50), new PVector(4, -40, 0));
+                this.applyRelativeForce((new PVector(fD.x, fD.y, 0)).mult(50), new PVector(4, -35, 0));
             }
         }
     }
