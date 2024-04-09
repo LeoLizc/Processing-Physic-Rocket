@@ -72,7 +72,7 @@ public class Rocket extends RigidBody{
         if(p.keyPressed){
             if(p.pressedKey('x')){
                 System.out.println("x pressed");
-                this.applyForce(new PVector(0, -200, 0));
+                this.applyRelativeForce(new PVector(0, -200, 0), new PVector(0,0, 0));
             }
             if(p.pressedKey('z')){
                 System.out.println("z pressed");
