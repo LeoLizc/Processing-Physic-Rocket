@@ -74,10 +74,10 @@ public abstract class WorldEntity {
     public void rotateByGlobalAxis(float angle, PVector vector) {
         vector = vector.copy().normalize();
         Quaternion q = new Quaternion(
-            vector.x * (float) Math.sin(angle / 2),
-            vector.y * (float) Math.sin(angle / 2),
-            vector.z * (float) Math.sin(angle / 2),
-            (float) Math.cos(angle / 2)
+                vector.x * (float) Math.sin(angle / 2),
+                vector.y * (float) Math.sin(angle / 2),
+                vector.z * (float) Math.sin(angle / 2),
+                (float) Math.cos(angle / 2)
         );
 
         this.rotation = q.mult(this.rotation);
