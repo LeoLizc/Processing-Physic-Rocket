@@ -4,8 +4,8 @@ import processing.core.PVector;
 
 public class PerlinSea extends WorldEntity {
     float scaleP, diff = 100;
-    private float baseScaleP;
     float intensity, velocity, rotation;
+    private float baseScaleP;
     private float size, segments, step;
 
     public PerlinSea(Simulator p) {
@@ -71,7 +71,7 @@ public class PerlinSea extends WorldEntity {
         velocity = Simulator.HALF_PI / 500f;
         step = size / segments;
         rotation = 0;
-        this.baseScaleP = 20/size;
+        this.baseScaleP = 20 / size;
     }
 
     public void drawObject() {
@@ -98,7 +98,7 @@ public class PerlinSea extends WorldEntity {
     }
 
     public void update() {
-        rotation = (rotation + velocity*p.deltaTime) % Simulator.TWO_PI;
+        rotation = (rotation + velocity * p.deltaTime) % Simulator.TWO_PI;
     }
 
     private void horizontalLine(float y) {
@@ -115,7 +115,7 @@ public class PerlinSea extends WorldEntity {
 
     private PVector getPerlinPoint(float x, float y) {
         float halfS = size / 2f;
-        return (new PVector(x + halfS, y + halfS)).mult(this.baseScaleP*scaleP).add(diff, diff).rotate(rotation);
+        return (new PVector(x + halfS, y + halfS)).mult(this.baseScaleP * scaleP).add(diff, diff).rotate(rotation);
     }
 
     private void vertex(float x, float y) {
