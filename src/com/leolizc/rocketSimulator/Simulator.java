@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Simulator extends PApplet {
+    public float deltaTime = 0;
     ArrayList<WorldEntity> entities = new ArrayList<>();
     Camera camera;
-    public float deltaTime=0;
-    private float lastTime=0;
+    private float lastTime = 0;
     private HashMap<Character, Boolean> pressedKeys = new HashMap<>();
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Simulator extends PApplet {
     public void setup() {
 //        camera(0, 0, 1, 0, 0, -1, 0, 1, 0);
 //        perspective(PI / 3.0f, (float) width / height, 0.1f, 10000.0f);
-        lastTime=millis();
+        lastTime = millis();
 
         camera = new Camera(this, null);
         camera.position.set(0, 0, -200);
@@ -122,8 +122,8 @@ public class Simulator extends PApplet {
     }
 
     private void update() {
-        deltaTime = (millis()-lastTime)/1000f;
-        lastTime=millis();
+        deltaTime = (millis() - lastTime) / 1000f;
+        lastTime = millis();
         camera.updateCamera();
         for (WorldEntity entity : entities) {
             entity._update();
@@ -174,7 +174,7 @@ public class Simulator extends PApplet {
         super.rotate(angle, vector.x, vector.y, vector.z);
     }
 
-    public boolean pressedKey(char key){
+    public boolean pressedKey(char key) {
         return (keyPressed && this.key == key) || pressedKeys.getOrDefault(key, false);
     }
 }
